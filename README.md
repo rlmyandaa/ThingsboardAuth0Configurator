@@ -9,4 +9,4 @@ Built on Python3.
  - **Terminal**
 	 -  Simply open terminal from this script directory, and execute **python3 Auth0_Configurator.py**
 
-**Prerequisite** : your original **thingsboard.yml** file from **/etc/thingsboard/conf** directory, copy and paste to this script directory.
+**Prerequisite** : your original **thingsboard.yml** file from **/etc/thingsboard/conf** directory, or from your working thingsboard vm(docker,etc) directory, copy and paste to this script directory.
