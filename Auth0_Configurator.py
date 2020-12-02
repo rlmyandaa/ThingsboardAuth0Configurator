@@ -256,7 +256,7 @@ old = 'emailAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_EMAIL_ATTRIBUT
 #firstNameAttributeKey
 
 old = 'firstNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_FIRST_NAME_ATTRIBUTE_KEY:}"'
-new = 'firstNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_FIRST_NAME_ATTRIBUTE_KEY:email}"'
+new = 'firstNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_FIRST_NAME_ATTRIBUTE_KEY:given_name}"'
 
 data = data.replace(old, new)
 
@@ -266,7 +266,7 @@ data = data.replace(old, new)
 
 #lastNameAttributeKey
 
-old = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_ATTRIBUTE_KEY:}"'
+old = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_ATTRIBUTE_KEY:family_name}"'
 
 
 # In[25]:
@@ -275,7 +275,7 @@ old = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_A
 #tenantNameStrategy
 
 old = 'tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_STRATEGY:domain}"'
-new = 'tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_STRATEGY:email}"'
+new = 'tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_STRATEGY:custom}"'
 
 data = data.replace(old, new)
 
@@ -286,7 +286,7 @@ data = data.replace(old, new)
 #tenantNamePattern
 
 old = 'tenantNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_PATTERN:}"'
-new = 'tenantNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_PATTERN:%{email}}"'
+new = 'tenantNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_PATTERN:%{nickname}_%{given_name} %{family_name}}"'
 
 data = data.replace(old, new)
 
