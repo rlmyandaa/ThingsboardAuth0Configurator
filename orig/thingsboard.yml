@@ -143,7 +143,7 @@ security:
           # Allows to create user if it not exists
           allowUserCreation: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ALLOW_USER_CREATION:true}"
           # Allows user to setup ThingsBoard internal password and login over default Login window
-          activateUser: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ACTIVATE_USER:true}"
+          activateUser: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ACTIVATE_USER:false}"
           # Mapper type of converter from external user into internal - 'basic' or 'custom'
           type: "${SECURITY_OAUTH2_DEFAULT_MAPPER_TYPE:basic}"
           basic:
@@ -155,7 +155,7 @@ security:
             # 'domain' - name of the Tenant will be extracted as domain from the email of the user
             # 'email' - name of the Tenant will email of the user
             # 'custom' - please configure 'tenantNamePattern' for custom mapping
-            tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_STRATEGY:email}"
+            tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_STRATEGY:domain}"
             # %{attribute_key} as placeholder for attribute value of attributes of external user object
             tenantNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_PATTERN:}"
             # If this field is not empty, user will be created as a user under defined Customer

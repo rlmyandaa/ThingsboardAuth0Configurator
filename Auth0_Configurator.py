@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import time
@@ -30,38 +30,29 @@ input('Press enter to continue...')
 clear()
 
 
-# In[2]:
+# In[7]:
 
 
 time.sleep(0.5)
-print('Make sure to put thingsboard.yml file in the same directory as this program')
-input('Press enter to continue...')
+print('Getting original thingsboard.yml file from')
+print('/etc/thingsboard/conf/thingsboard.yml')
 print()
 print()
+os.system('cp /etc/thingsboard/conf/thingsboard.yml .')
+
+
+# In[ ]:
+
+
 time.sleep(0.5)
-print('Finding thingsboard.yml file')
+print('Original thingsboard.yml file backed up to thignsboard_raw.yml file')
+os.rename(r'thingsboard.yml',r'thingsboard_raw.yml')
+time.sleep(0.5)
+print('Backup complete..')
 time.sleep(0.5)
 
 
-# In[3]:
-
-
-if(os.path.isfile('thingsboard.yml')):
-    print('Found thingsboard.yml file')
-    time.sleep(0.5)
-    print('Original thingsboard.yml file backed up to thignsboard_raw.yml file')
-    os.rename(r'thingsboard.yml',r'thingsboard_raw.yml')
-    time.sleep(0.5)
-    print('Backup complete..')
-    time.sleep(0.5)
-else:
-    print('thingsboard.yml not found, please put your original thingsboard.yml file first and rerun this program')
-    quit()
-
-
-# In[4]:
-
-
+# In[ ]:
 
 
 file = open("thingsboard_raw.yml", "rt")
@@ -70,7 +61,7 @@ data = file.read()
 #replace all occurrences of the required string
 
 
-# In[5]:
+# In[ ]:
 
 
 #service Name
@@ -78,7 +69,7 @@ data = file.read()
 data = data.replace('default:', 'auth0:')
 
 
-# In[6]:
+# In[ ]:
 
 
 #loginButtonLabel
@@ -88,7 +79,7 @@ new = 'loginButtonLabel: "${SECURITY_OAUTH2_DEFAULT_LOGIN_BUTTON_LABEL:Auth0}"'
 data = data.replace(old, new)
 
 
-# In[7]:
+# In[ ]:
 
 
 old = 'loginButtonIcon: "${SECURITY_OAUTH2_DEFAULT_LOGIN_BUTTON_ICON:}"'
@@ -96,7 +87,7 @@ new = 'loginButtonIcon: "${SECURITY_OAUTH2_DEFAULT_LOGIN_BUTTON_ICON:mdi:shield-
 data = data.replace(old, new)
 
 
-# In[8]:
+# In[ ]:
 
 
 #Client Name
@@ -110,7 +101,7 @@ new = new+clientName+'}"'
 data = data.replace(old, new)
 
 
-# In[9]:
+# In[ ]:
 
 
 #Client ID
@@ -123,7 +114,7 @@ new = new+clientId+'}"'
 data = data.replace(old, new)
 
 
-# In[10]:
+# In[ ]:
 
 
 #Client Secret
@@ -136,7 +127,7 @@ new = new+clientSecret+'}"'
 data = data.replace(old, new)
 
 
-# In[11]:
+# In[ ]:
 
 
 #Access Token URI
@@ -149,7 +140,7 @@ new = new+accessTokenUri+'}"'
 data = data.replace(old, new)
 
 
-# In[12]:
+# In[ ]:
 
 
 #UserScope
@@ -160,15 +151,18 @@ new = 'scope: "${SECURITY_OAUTH2_DEFAULT_SCOPE:openid,email,profile}"'
 data = data.replace(old, new)
 
 
-# In[13]:
+# In[ ]:
 
 
 #Redirect URI Template
 
 old = 'redirectUriTemplate: "${SECURITY_OAUTH2_DEFAULT_REDIRECT_URI_TEMPLATE:http://localhost:8080/login/oauth2/code/}"'
+new = 'redirectUriTemplate: "${SECURITY_OAUTH2_DEFAULT_REDIRECT_URI_TEMPLATE:http://127.0.0.1:8080/login/oauth2/code/}"'
+
+data = data.replace(old, new)
 
 
-# In[14]:
+# In[ ]:
 
 
 #jwkSetUri
@@ -181,7 +175,7 @@ new = new+jwkSetUri+'}"'
 data = data.replace(old, new)
 
 
-# In[15]:
+# In[ ]:
 
 
 #authorizationGrantType
@@ -189,7 +183,7 @@ data = data.replace(old, new)
 old = 'authorizationGrantType: "${SECURITY_OAUTH2_DEFAULT_AUTHORIZATION_GRANT_TYPE:authorization_code}"'
 
 
-# In[16]:
+# In[ ]:
 
 
 #clientAuthenticationMethod
@@ -197,7 +191,7 @@ old = 'authorizationGrantType: "${SECURITY_OAUTH2_DEFAULT_AUTHORIZATION_GRANT_TY
 old = 'clientAuthenticationMethod: "${SECURITY_OAUTH2_DEFAULT_CLIENT_AUTHENTICATION_METHOD:post}" # basic or post'
 
 
-# In[17]:
+# In[ ]:
 
 
 #userInfoUri
@@ -211,7 +205,7 @@ new = new+userInfoUri+'}"'
 data = data.replace(old, new)
 
 
-# In[18]:
+# In[ ]:
 
 
 #userNameAttributeName
@@ -219,22 +213,25 @@ data = data.replace(old, new)
 old = 'userNameAttributeName: "${SECURITY_OAUTH2_DEFAULT_USER_NAME_ATTRIBUTE_NAME:email}"'
 
 
-# In[19]:
+# In[ ]:
 
 
 #allowUserCreation
 old = 'allowUserCreation: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ALLOW_USER_CREATION:true}"'
 
 
-# In[20]:
+# In[ ]:
 
 
 #activateUser
 
 old = 'activateUser: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ACTIVATE_USER:false}"'
+new = 'activateUser: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ACTIVATE_USER:true}"'
+
+data = data.replace(old, new)
 
 
-# In[21]:
+# In[ ]:
 
 
 #Default Mapper Type
@@ -242,7 +239,7 @@ old = 'activateUser: "${SECURITY_OAUTH2_DEFAULT_MAPPER_ACTIVATE_USER:false}"'
 old = 'type: "${SECURITY_OAUTH2_DEFAULT_MAPPER_TYPE:basic}"'
 
 
-# In[22]:
+# In[ ]:
 
 
 #emailAttributeKey
@@ -250,7 +247,7 @@ old = 'type: "${SECURITY_OAUTH2_DEFAULT_MAPPER_TYPE:basic}"'
 old = 'emailAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_EMAIL_ATTRIBUTE_KEY:email}"'
 
 
-# In[23]:
+# In[ ]:
 
 
 #firstNameAttributeKey
@@ -261,15 +258,18 @@ new = 'firstNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_FIRST_NAME
 data = data.replace(old, new)
 
 
-# In[24]:
+# In[ ]:
 
 
 #lastNameAttributeKey
 
-old = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_ATTRIBUTE_KEY:family_name}"'
+old = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_ATTRIBUTE_KEY:}"'
+new = 'lastNameAttributeKey: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_LAST_NAME_ATTRIBUTE_KEY:family_name}"'
+
+data = data.replace(old, new)
 
 
-# In[25]:
+# In[ ]:
 
 
 #tenantNameStrategy
@@ -280,7 +280,7 @@ new = 'tenantNameStrategy: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_S
 data = data.replace(old, new)
 
 
-# In[26]:
+# In[ ]:
 
 
 #tenantNamePattern
@@ -291,7 +291,7 @@ new = 'tenantNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_TENANT_NAME_PA
 data = data.replace(old, new)
 
 
-# In[27]:
+# In[ ]:
 
 
 #customerNamePattern
@@ -299,7 +299,7 @@ data = data.replace(old, new)
 old = 'customerNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_CUSTOMER_NAME_PATTERN:}"'
 
 
-# In[28]:
+# In[ ]:
 
 
 #defaultDashboardName
@@ -307,7 +307,7 @@ old = 'customerNamePattern: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_CUSTOMER_NAM
 old = 'defaultDashboardName: "${SECURITY_OAUTH2_DEFAULT_MAPPER_BASIC_DEFAULT_DASHBOARD_NAME:}"'
 
 
-# In[29]:
+# In[ ]:
 
 
 file.close()
@@ -326,7 +326,7 @@ time.sleep(0.5)
 print('Writing complete..')
 
 
-# In[34]:
+# In[ ]:
 
 
 print('================================================')
