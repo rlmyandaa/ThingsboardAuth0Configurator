@@ -1,4 +1,5 @@
 # ThingsboardAuth0Configurator
+**For Thingsboard v3.1.1**
 **Simple tool to help edit thingsboard.yml code snippet to enable Auth0 authentication method.**
 
 Built on Python3.
